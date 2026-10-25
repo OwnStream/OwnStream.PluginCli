@@ -7,6 +7,28 @@ Designed to be used with the VSCode Plugin.
 
 CI builds are self-contained executables. Simply download the latest version, and call it through the CLI.
 
+## Building
+
+Since OwnStream.PluginCore is published in GitHub Packages, you have to provide an access token with packages.read
+permission to download it. Before building, create a `nuget.config` file next to `OwnStream.PluginCli.sln` with the
+following contents:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <packageSources>
+        <clear/>
+        <add key="github" value="https://nuget.pkg.github.com/OwnStream/index.json"/>
+    </packageSources>
+    <packageSourceCredentials>
+        <github>
+            <add key="Username" value="YOUR_GITHUB_USERNAME"/>
+            <add key="ClearTextPassword" value="YOUR_PERSONAL_ACCESS_TOKEN"/>
+        </github>
+    </packageSourceCredentials>
+</configuration>
+```
+
 ## Usage
 
 `OwnStream.PluginCli [global arguments] <command> [arguments]`
@@ -35,5 +57,6 @@ Runs the specified feature of the plugin. Available features are:
 | Get TV show episode info | `metadata.getEpisode` | `-id/--id`: ID of the TV Series to get the metadata of, `-s/--season`: Season index of the requested item, `-e/--episode` Episode index of the requested item |
 
 ## TODO:
+
 - [ ] `build` command to package a plugin
 - [ ] `runTests` to run tests for the plugin - defined by a `_tests.json` file in the project root
