@@ -1,6 +1,8 @@
 using System.Text.Json.Serialization;
 
-namespace OwnStream.PluginCli.Plugin;
+// ReSharper disable ClassNeverInstantiated.Global
+
+namespace OwnStream.PluginCore;
 
 public class PluginMeta
 {

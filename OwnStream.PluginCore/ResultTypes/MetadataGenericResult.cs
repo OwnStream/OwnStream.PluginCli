@@ -1,4 +1,5 @@
-namespace OwnStream.PluginCli.Plugin.ResultTypes;
+// ReSharper disable CollectionNeverUpdated.Global
+namespace OwnStream.PluginCore.ResultTypes;
 
 public class MetadataGenericResult
 {

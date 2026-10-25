@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using GlobExpressions;
 
-namespace OwnStream.PluginCli.Plugin;
+namespace OwnStream.PluginCore;
 
 public class PluginHost(PluginMeta meta)
 {

@@ -1,8 +1,8 @@
-namespace OwnStream.PluginCli.Plugin.ResultTypes;
+namespace OwnStream.PluginCore.ResultTypes;
 
 public class MetadataEpisodeResult
 {
-	public string Title { get; set; }
+	public required string Title { get; set; }
 	public Dictionary<string, string>? TitleTranslations { get; set; }
 	public string? Summary { get; set; }
 	public Dictionary<string, string>? SummaryTranslations { get; set; }

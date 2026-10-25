@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnStream.PluginCli", "OwnStream.PluginCli\OwnStream.PluginCli.csproj", "{5D9BC131-B2ED-4874-9127-894A323B0194}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwnStream.PluginCore", "OwnStream.PluginCore\OwnStream.PluginCore.csproj", "{AA98639F-2B2F-4A61-A1C1-93F75A8E295A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{5D9BC131-B2ED-4874-9127-894A323B0194}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D9BC131-B2ED-4874-9127-894A323B0194}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D9BC131-B2ED-4874-9127-894A323B0194}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA98639F-2B2F-4A61-A1C1-93F75A8E295A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA98639F-2B2F-4A61-A1C1-93F75A8E295A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA98639F-2B2F-4A61-A1C1-93F75A8E295A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA98639F-2B2F-4A61-A1C1-93F75A8E295A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

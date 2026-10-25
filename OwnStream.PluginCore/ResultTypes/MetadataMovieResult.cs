@@ -1,3 +1,3 @@
-namespace OwnStream.PluginCli.Plugin.ResultTypes;
+namespace OwnStream.PluginCore.ResultTypes;
 
 public class MetadataMovieResult : MetadataGenericResult;

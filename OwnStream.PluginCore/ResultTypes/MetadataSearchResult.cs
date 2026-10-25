@@ -1,4 +1,5 @@
-namespace OwnStream.PluginCli.Plugin.ResultTypes;
+// ReSharper disable ClassNeverInstantiated.Global
+namespace OwnStream.PluginCore.ResultTypes;
 
 public class MetadataSearchResult
 {

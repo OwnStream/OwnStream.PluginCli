@@ -1,8 +1,8 @@
+using System.Text.Json;
 using Microsoft.ClearScript;
 using Microsoft.ClearScript.V8;
-using System.Text.Json;
 
-namespace OwnStream.PluginCli.Plugin;
+namespace OwnStream.PluginCore;
 
 public class PluginInstance : IDisposable
 {

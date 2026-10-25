@@ -2,30 +2,14 @@ using System.CommandLine;
 using System.Text;
 using System.Text.Json;
 using OwnStream.PluginCli.Attributes;
-using OwnStream.PluginCli.Plugin;
+using OwnStream.PluginCli;
+using OwnStream.PluginCore;
 
 namespace OwnStream.PluginCli.Commands;
 
 [Command("testMeta", "Tests if the metadata check passes")]
 public class TestMeta : ICommand
 {
-	/*
-	private readonly Option<string?> _nameOption = new("--name")
-	{
-		Description = "Optional name to include in the test output"
-	};
-
-	private readonly Argument<string> _targetArgument = new("target")
-	{
-		Description = "The target to test"
-	};
-
-	public void Configure(Command command)
-	{
-		command.Options.Add(_nameOption);
-		command.Arguments.Add(_targetArgument);
-	}
-*/
 	public void Configure(Command command)
 	{
 	}

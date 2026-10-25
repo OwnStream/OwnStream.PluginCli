@@ -3,8 +3,9 @@ using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 using OwnStream.PluginCli.Attributes;
-using OwnStream.PluginCli.Plugin;
-using OwnStream.PluginCli.Plugin.ResultTypes;
+using OwnStream.PluginCore.ResultTypes;
+using OwnStream.PluginCli;
+using OwnStream.PluginCore;
 
 namespace OwnStream.PluginCli.Commands;
 
