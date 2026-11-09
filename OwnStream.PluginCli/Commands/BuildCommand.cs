@@ -29,7 +29,7 @@ public class BuildCommand : ICommand
 
 			await using FileStream zipStream =
 				new(
-					$"{pluginMeta.Name.ToLowerInvariant().Replace(" ", "")}-{pluginMeta.Version.Name}_({pluginMeta.Version.Code}).zip",
+					$"{pluginMeta.Id}-{pluginMeta.Version.Code}_{pluginMeta.Version.Name}.zip",
 					FileMode.Create);
 			await using ZipArchive zip = new(zipStream, ZipArchiveMode.Create, true);
 
