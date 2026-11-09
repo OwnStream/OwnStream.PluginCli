@@ -1,0 +1,82 @@
+name: build & release binary
+on:
+  push:
+    branches:
+      - master
+permissions:
+  contents: read
+  packages: read
+jobs:
+  build:
+    name: Build binaries
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, 'ci') && !contains(github.event.head_commit.message, 'skip') }}
+    strategy:
+      fail-fast: true
+      matrix:
+        rid:
+          - linux-x64
+          #- win-x64
+          #- osx-x64
+          #- osx-arm64
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 10.0.112 # what i was locally using as i write this workflow
+
+      - name: Add GitHub Packages source
+        run: dotnet nuget add source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" --name github
+
+      - name: Install dependencies
+        run: dotnet restore --locked-mode -r ${{ matrix.rid }}
+        env:
+          NuGetPackageSourceCredentials_github: Username=${{ github.actor }};Password=${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish
+        run: >
+          dotnet publish
+          -p:PublishSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true
+          --self-contained true
+          --no-restore
+          -c Release
+          -r ${{ matrix.rid }}
+          -o artifacts/${{ matrix.rid }}
+          OwnStream.PluginCli
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts-${{ matrix.rid }}
+          path: artifacts/${{ matrix.rid }}/**
+          retention-days: 1
+  release:
+    name: Create Release
+    needs: publish
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, 'ci') && !contains(github.event.head_commit.message, 'skip') }}
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      # TODO: Get version from csproj
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          files: |
+            artifacts/linux-x64/OwnStream.PluginCli
+            artifacts/win-x64/OwnStream.PluginCli.exe
+            artifacts/osx-x64/OwnStream.PluginCli
+            artifacts/osx-arm64/OwnStream.PluginCli
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
