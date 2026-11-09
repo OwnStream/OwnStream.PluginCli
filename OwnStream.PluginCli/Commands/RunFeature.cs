@@ -226,7 +226,7 @@ public class RunFeature : ICommand
 				break;
 			}
 
-			case "metadata.getSeasons":
+			case "metadata.getTvSeasons":
 			{
 				StringBuilder sb = new();
 				MetadataSeasonListResult[] results =
@@ -241,7 +241,7 @@ public class RunFeature : ICommand
 				break;
 			}
 
-			case "metadata.getSeason":
+			case "metadata.getTvSeason":
 			{
 				StringBuilder sb = new();
 				MetadataSeasonResult r = JsonSerializer.Deserialize<MetadataSeasonResult>(resultString, opts)!;
@@ -264,7 +264,7 @@ public class RunFeature : ICommand
 				break;
 			}
 
-			case "metadata.getEpisode":
+			case "metadata.getTvEpisode":
 			{
 				StringBuilder sb = new();
 				MetadataEpisodeResult r = JsonSerializer.Deserialize<MetadataEpisodeResult>(resultString, opts)!;
@@ -323,8 +323,8 @@ public class RunFeature : ICommand
 		return feature switch
 		{
 			"metadata.search" => ConvertMetadataSearchArgs(tokens),
-			"metadata.getMovie" or "metadata.getTv" or "metadata.getSeason" or "metadata.getSeasons"
-				or "metadata.getEpisode" =>
+			"metadata.getMovie" or "metadata.getTv" or "metadata.getTvSeason" or "metadata.getTvSeasons"
+				or "metadata.getTvEpisode" =>
 				ConvertGetMetadataArgs(tokens, feature),
 			_ => tokens
 		};
@@ -357,8 +357,8 @@ public class RunFeature : ICommand
 		Dictionary<string, string?> args = ParseOptions(tokens);
 
 		string id = Require(args, "-id", "--id");
-		string? season = RequireIf(feature is "metadata.get.season" or "metadata.get.episode", args, "-s", "--season");
-		string? episode = RequireIf(feature == "metadata.get.episode", args, "-e", "--episode");
+		string? season = RequireIf(feature is "metadata.getTvSeason" or "metadata.getTvEpisode", args, "-s", "--season");
+		string? episode = RequireIf(feature == "metadata.getTvEpisode", args, "-e", "--episode");
 
 		return new[]
 		{
