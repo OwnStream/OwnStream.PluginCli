@@ -235,21 +235,7 @@ public class RunFeature : ICommand
 				sb.AppendLine($"Seasons list: ({results.Length})");
 				sb.AppendLine("============================");
 				foreach (MetadataSeasonListResult r in results)
-				{
-					sb.AppendLine($"[{r.Id}] S{r.Index:-01} {r.Name}");
-					if (r.Posters != null)
-					{
-						sb.AppendLine($"Poster URLs: ({r.Posters.Length})");
-						foreach (MetadataImage image in r.Posters)
-						{
-							sb.AppendLine($"  - {image.Url}");
-							if (!string.IsNullOrWhiteSpace(image.Locale))
-								sb.AppendLine($"    Locale: {image.Locale}");
-						}
-					}
-
-					sb.AppendLine();
-				}
+					sb.AppendLine($"[S{r.Index:-01}] {r.Name} {(r.Poster != null ? $"(Poster: {r.Poster})" : "")}");
 
 				resultString = sb.ToString();
 				break;
@@ -298,7 +284,7 @@ public class RunFeature : ICommand
 							sb.AppendLine($"    Locale: {image.Locale}");
 					}
 				}
-				
+
 				if (r.TitleTranslations?.Count > 0)
 				{
 					sb.AppendLine($"Title Translations: ({r.TitleTranslations.Count})");

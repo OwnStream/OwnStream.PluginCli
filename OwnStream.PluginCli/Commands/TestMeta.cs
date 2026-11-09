@@ -71,7 +71,7 @@ public class TestMeta : ICommand
 
 		if (meta.AutoUpdater != null)
 		{
-			sb.AppendLine($"Auto Updater: {meta.AutoUpdater.Source}");
+			sb.AppendLine($"Auto Updater: {meta.AutoUpdater.Type}");
 			foreach ((string key, string value) in meta.AutoUpdater.Params)
 			{
 				sb.AppendLine($"- {key}: {value}");
