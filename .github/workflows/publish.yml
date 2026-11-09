@@ -1,8 +1,8 @@
 name: build & release binary
 on:
   push:
-    branches:
-      - master
+    tags:
+      - "v*"
 permissions:
   contents: write
   packages: read
@@ -67,7 +67,19 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: artifacts
-          merge-multiple: true
+          merge-multiple: false
+
+      - name: Rename binaries
+        run: |
+          mkdir -p release
+          cp artifacts/artifacts-linux-x64/OwnStream.PluginCli \
+            release/OwnStream.PluginCli-linux-x64
+          cp artifacts/artifacts-win-x64/OwnStream.PluginCli.exe \
+            release/OwnStream.PluginCli-win-x64.exe
+          cp artifacts/artifacts-osx-x64/OwnStream.PluginCli \
+            release/OwnStream.PluginCli-osx-x64
+          cp artifacts/artifacts-osx-arm64/OwnStream.PluginCli \
+            release/OwnStream.PluginCli-osx-arm64
 
       # TODO: Get version from csproj
       - name: Create release
@@ -75,11 +87,7 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
-          files: |
-            artifacts/linux-x64/OwnStream.PluginCli
-            artifacts/win-x64/OwnStream.PluginCli.exe
-            artifacts/osx-x64/OwnStream.PluginCli
-            artifacts/osx-arm64/OwnStream.PluginCli
+          files: release/*
           draft: false
           prerelease: false
         env:
