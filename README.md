@@ -52,11 +52,18 @@ Runs the specified feature of the plugin. Available features are:
 | Search                   | `metadata.search`     | `-t/--type`: `Movie` or `Tv`, `-q/--query`: Search query, `-y/--year`: Search year                                                                            |
 | Get Movie                | `metadata.getMovie`   | `-id/--id`: ID of the movie to get                                                                                                                            |
 | Get TV show              | `metadata.getTv`      | `-id/--id`: ID of the TV Series to get                                                                                                                        |
-| Get TV show seasons      | `metadata.getSeasons` | `-id/--id`: ID of the TV Series to get the seasons of                                                                                                         |
-| Get TV show season info  | `metadata.getSeason`  | `-id/--id`: ID of the TV Series to get the metadata of, `-s/--season`: Season index of the requested item                                                     |
-| Get TV show episode info | `metadata.getEpisode` | `-id/--id`: ID of the TV Series to get the metadata of, `-s/--season`: Season index of the requested item, `-e/--episode` Episode index of the requested item |
+| Get TV show seasons      | `metadata.getTvSeasons` | `-id/--id`: ID of the TV Series to get the seasons of                                                                                                         |
+| Get TV show season info  | `metadata.getTvSeason`  | `-id/--id`: ID of the TV Series to get the metadata of, `-s/--season`: Season index of the requested item                                                     |
+| Get TV show episode info | `metadata.getTvEpisode` | `-id/--id`: ID of the TV Series to get the metadata of, `-s/--season`: Season index of the requested item, `-e/--episode` Episode index of the requested item |
+
+### `build`
+
+Builds the plugin into a package that can be installed in OwnStream.
+
+- **`-a/--all`**: Instead of building the plugin at the project path, builds all plugins in the subdirectories.
+- **`-o/--out <path>`**: Puts the output files in the specified directory (default: current working directory)
 
 ## TODO:
 
-- [ ] `build` command to package a plugin
+- [x] `build` command to package a plugin
 - [ ] `runTests` to run tests for the plugin - defined by a `_tests.json` file in the project root
